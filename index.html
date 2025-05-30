@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FocusFlow - Enhance Your Concentration & Productivity</title>
+    <meta
+      name="description"
+      content="Test and improve your focus duration with FocusFlow. Simple, beautiful, and multi-language support. Track your progress with advanced analytics."
+    />
+    <meta
+      name="keywords"
+      content="focus test, concentration timer, productivity tool, attention span, study timer, work focus, pomodoro alternative, focus tracker, mindful practice"
+    />
+    <meta name="author" content="Your Name/Company Name" />
+    <link rel="canonical" href="https://www.focusflow.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.focusflow.com/" />
+    <meta
+      property="og:title"
+      content="FocusFlow - Enhance Your Concentration & Productivity"
+    />
+    <meta
+      property="og:description"
+      content="Test and improve your focus duration with FocusFlow. Simple, beautiful, and multi-language support. Track your progress with advanced analytics."
+    />
+    <meta
+      property="og:image"
+      content="https://www.focusflow.com/favicon-192x192.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.focusflow.com/" />
+    <meta
+      name="twitter:title"
+      content="FocusFlow - Enhance Your Concentration & Productivity"
+    />
+    <meta
+      name="twitter:description"
+      content="Test and improve your focus duration with FocusFlow. Simple, beautiful, and multi-language support. Track your progress with advanced analytics."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.focusflow.com/favicon-192x192.png"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <style>
+      /* CSS Code Here */
+      body {
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f4f7f6;
+        color: #333;
+        transition: background-color 0.5s ease;
+      }
+
+      .container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        transition: transform 0.3s ease-in-out;
+        position: relative; /* For language selector positioning */
+      }
+
+      .container:hover {
+        transform: translateY(-5px);
+      }
+
+      h1 {
+        color: #4caf50;
+        margin-bottom: 25px;
+        font-size: 2.2em;
+        letter-spacing: 0.5px;
+      }
+
+      .description {
+        margin-bottom: 30px;
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #555;
+      }
+
+      .timer-display {
+        font-size: 4em;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #2196f3;
+        animation: pulse 1.5s infinite alternate;
+      }
+
+      @keyframes pulse {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.02);
+        }
+      }
+
+      .controls button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .controls button:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+      }
+
+      .controls button:active {
+        transform: translateY(0);
+      }
+
+      .controls button.stop {
+        background-color: #f44336;
+      }
+
+      .controls button.stop:hover {
+        background-color: #da190b;
+      }
+
+      .controls button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      .language-selector {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 0.9em;
+      }
+
+      .language-selector select {
+        padding: 8px 12px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        cursor: pointer;
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
+
+      .language-selector select:focus {
+        border-color: #4caf50;
+      }
+
+      .analytics {
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        text-align: left;
+        color: #666;
+      }
+
+      .analytics h3 {
+        color: #2196f3;
+        margin-bottom: 15px;
+      }
+
+      .analytics p {
+        margin-bottom: 8px;
+        font-size: 0.95em;
+      }
+
+      .analytics .progress-bar-container {
+        width: 100%;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+        margin-top: 10px;
+        overflow: hidden;
+      }
+
+      .analytics .progress-bar {
+        height: 20px;
+        background-color: #4caf50;
+        width: 0%;
+        border-radius: 5px;
+        text-align: center;
+        color: white;
+        line-height: 20px;
+        font-size: 0.8em;
+        transition: width 0.5s ease-out;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 1.8em;
+        }
+        .timer-display {
+          font-size: 3em;
+        }
+        .controls button {
+          padding: 12px 20px;
+          font-size: 1em;
+          margin: 5px;
+        }
+        .language-selector {
+          top: 10px;
+          right: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="language-selector">
+        <label for="language-select" class="sr-only">Select Language</label>
+        <select id="language-select">
+          <option value="en">English</option>
+          <option value="ko">한국어</option>
+          <option value="es">Español</option>
+          <option value="ar">العربية</option>
+          <option value="ru">Русский</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+        </select>
+      </div>
+
+      <h1 data-i18n="title">FocusFlow - Test Your Concentration</h1>
+      <p class="description" data-i18n="description">
+        Measure and enhance your focus duration. Start the timer, concentrate on
+        a task, and stop it when your focus breaks.
+      </p>
+
+      <div class="timer-display" id="timer-display">00:00:00</div>
+
+      <div class="controls">
+        <button id="startButton" data-i18n="startButton">Start</button>
+        <button id="stopButton" class="stop" data-i18n="stopButton" disabled>
+          Stop
+        </button>
+      </div>
+
+      <div class="analytics">
+        <h3 data-i18n="analyticsTitle">Your Focus Insights</h3>
+        <p>
+          <strong data-i18n="longestFocus">Longest Focus Session:</strong>
+          <span id="longest-focus">00:00:00</span>
+        </p>
+        <p>
+          <strong data-i18n="averageFocus">Average Focus Session:</strong>
+          <span id="average-focus">00:00:00</span>
+        </p>
+        <p>
+          <strong data-i18n="totalSessions">Total Sessions Completed:</strong>
+          <span id="total-sessions">0</span>
+        </p>
+        <p>
+          <strong data-i18n="currentStreak"
+            >Current Focus Streak (Days):</strong
+          >
+          <span id="current-streak">0</span>
+        </p>
+        <p>
+          <strong data-i18n="longestStreak"
+            >Longest Focus Streak (Days):</strong
+          >
+          <span id="longest-streak">0</span>
+        </p>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="daily-progress-bar">0%</div>
+        </div>
+        <p>
+          <small data-i18n="dailyGoal"
+            >Daily Goal: 60 minutes of focused time</small
+          >
+        </p>
+      </div>
+    </div>
+
+    <script>
+      /* JavaScript Code Here */
+      const timerDisplay = document.getElementById("timer-display");
+      const startButton = document.getElementById("startButton");
+      const stopButton = document.getElementById("stopButton");
+      const languageSelect = document.getElementById("language-select");
+
+      // Analytics display elements
+      const longestFocusSpan = document.getElementById("longest-focus");
+      const averageFocusSpan = document.getElementById("average-focus");
+      const totalSessionsSpan = document.getElementById("total-sessions");
+      const currentStreakSpan = document.getElementById("current-streak");
+      const longestStreakSpan = document.getElementById("longest-streak");
+      const dailyProgressBar = document.getElementById("daily-progress-bar");
+
+      let timerInterval;
+      let startTime;
+      let elapsedTime = 0; // Stored in seconds
+      let isRunning = false;
+
+      // Internationalization (i18n) setup
+      const translations = {
+        en: {
+          title: "FocusFlow - Test Your Concentration",
+          description:
+            "Measure and enhance your focus duration. Start the timer, concentrate on a task, and stop it when your focus breaks.",
+          startButton: "Start",
+          stopButton: "Stop",
+          analyticsTitle: "Your Focus Insights",
+          longestFocus: "Longest Focus Session:",
+          averageFocus: "Average Focus Session:",
+          totalSessions: "Total Sessions Completed:",
+          currentStreak: "Current Focus Streak (Days):",
+          longestStreak: "Longest Focus Streak (Days):",
+          dailyGoal: "Daily Goal: 60 minutes of focused time",
+        },
+        ko: {
+          title: "FocusFlow - 내 집중력 테스트",
+          description:
+            "집중력 지속 시간을 측정하고 향상시키세요. 타이머를 시작하고, 한 가지 작업에 집중한 다음, 집중력이 흐트러질 때 멈추세요.",
+          startButton: "시작",
+          stopButton: "중지",
+          analyticsTitle: "당신의 집중력 분석",
+          longestFocus: "가장 긴 집중 세션:",
+          averageFocus: "평균 집중 세션:",
+          totalSessions: "완료된 총 세션:",
+          currentStreak: "현재 집중력 연속 기록 (일):",
+          longestStreak: "가장 긴 집중력 연속 기록 (일):",
+          dailyGoal: "일일 목표: 60분 집중 시간",
+        },
+        es: {
+          title: "FocusFlow - Prueba tu Concentración",
+          description:
+            "Mide y mejora tu duración de concentración. Inicia el temporizador, concéntrate en una tarea y detenlo cuando tu concentración se rompa.",
+          startButton: "Iniciar",
+          stopButton: "Detener",
+          analyticsTitle: "Tus Insights de Enfoque",
+          longestFocus: "Sesión de Enfoque más Larga:",
+          averageFocus: "Sesión de Enfoque Promedio:",
+          totalSessions: "Sesiones Completadas:",
+          currentStreak: "Racha de Enfoque Actual (Días):",
+          longestStreak: "Racha de Enfoque más Larga (Días):",
+          dailyGoal: "Meta Diaria: 60 minutos de tiempo de enfoque",
+        },
+        ar: {
+          title: "FocusFlow - اختبر تركيزك",
+          description:
+            "قسّم وحسّن مدة تركيزك. ابدأ المؤقت، ركز على مهمة، وأوقفه عندما ينقطع تركيزك.",
+          startButton: "ابدأ",
+          stopButton: "أوقف",
+          analyticsTitle: "رؤى تركيزك",
+          longestFocus: "أطول جلسة تركيز:",
+          averageFocus: "متوسط جلسة التركيز:",
+          totalSessions: "إجمالي الجلسات المكتملة:",
+          currentStreak: "سلسلة التركيز الحالية (أيام):",
+          longestStreak: "أطول سلسلة تركيز (أيام):",
+          dailyGoal: "الهدف اليومي: 60 دقيقة من وقت التركيز",
+        },
+        ru: {
+          title: "FocusFlow - Проверьте свою концентрацию",
+          description:
+            "Измеряйте и улучшайте продолжительность вашей концентрации. Запустите таймер, сосредоточьтесь на задаче и остановите его, когда ваше внимание рассеется.",
+          startButton: "Старт",
+          stopButton: "Стоп",
+          analyticsTitle: "Ваши данные о фокусе",
+          longestFocus: "Самая длинная сессия фокуса:",
+          averageFocus: "Средняя сессия фокуса:",
+          totalSessions: "Всего завершенных сессий:",
+          currentStreak: "Текущая серия фокуса (дни):",
+          longestStreak: "Самая длинная серия фокуса (дни):",
+          dailyGoal: "Ежедневная цель: 60 минут сфокусированного времени",
+        },
+        ja: {
+          title: "FocusFlow - 集中力テスト",
+          description:
+            "集中力の持続時間を測定し、向上させましょう。タイマーを開始し、タスクに集中し、集中が途切れたら停止します。",
+          startButton: "開始",
+          stopButton: "停止",
+          analyticsTitle: "あなたの集中力分析",
+          longestFocus: "最長集中セッション:",
+          averageFocus: "平均集中セッション:",
+          totalSessions: "完了した合計セッション:",
+          currentStreak: "現在の集中連続記録 (日):",
+          longestStreak: "最長集中連続記録 (日):",
+          dailyGoal: "毎日の目標: 60分の集中時間",
+        },
+        zh: {
+          title: "FocusFlow - 专注力测试",
+          description:
+            "测量并提高您的专注时间。启动计时器，专注于一项任务，并在您的专注力中断时停止它。",
+          startButton: "开始",
+          stopButton: "停止",
+          analyticsTitle: "您的专注力洞察",
+          longestFocus: "最长专注时间:",
+          averageFocus: "平均专注时间:",
+          totalSessions: "完成的总会话数:",
+          currentStreak: "当前专注力连胜 (天):",
+          longestStreak: "最长专注力连胜 (天):",
+          dailyGoal: "每日目标: 60分钟专注时间",
+        },
+      };
+
+      // Local Storage Keys
+      const LS_KEY_ANALYTICS = "focusFlowAnalytics";
+      const LS_KEY_LAST_SESSION = "focusFlowLastSession";
+      const LS_KEY_CURRENT_LANG = "focusFlowCurrentLang";
+
+      // Initialize analytics data
+      let analyticsData = {
+        totalSessions: 0,
+        totalFocusTime: 0, // in seconds
+        longestSession: 0, // in seconds
+        sessionDurations: [],
+        lastSessionDate: null,
+        currentStreak: 0,
+        longestStreak: 0,
+        dailyFocusedTime: 0, // in seconds, for the current day
+        dailyGoal: 60 * 60, // 60 minutes in seconds
+      };
+
+      function formatTime(seconds) {
+        const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
+        const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+        const s = String(seconds % 60).padStart(2, "0");
+        return `${h}:${m}:${s}`;
+      }
+
+      function updateDisplay() {
+        timerDisplay.textContent = formatTime(elapsedTime);
+      }
+
+      function startTimer() {
+        if (isRunning) return;
+
+        isRunning = true;
+        startTime = Date.now() - elapsedTime * 1000; // Resume from previous state
+        timerInterval = setInterval(() => {
+          elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+          updateDisplay();
+        }, 1000);
+
+        startButton.disabled = true;
+        stopButton.disabled = false;
+        saveLastSession(); // Save current state to local storage
+      }
+
+      function stopTimer() {
+        if (!isRunning) return;
+
+        isRunning = false;
+        clearInterval(timerInterval);
+        stopButton.disabled = true;
+        startButton.disabled = false;
+
+        if (elapsedTime > 0) {
+          // Only record if session was non-zero
+          recordSession(elapsedTime);
+        }
+        elapsedTime = 0; // Reset timer display after recording
+        updateDisplay();
+        updateAnalyticsDisplay();
+        clearLastSession(); // Clear last session data after completion
+      }
+
+      function recordSession(duration) {
+        analyticsData.totalSessions++;
+        analyticsData.totalFocusTime += duration;
+        analyticsData.sessionDurations.push(duration);
+
+        if (duration > analyticsData.longestSession) {
+          analyticsData.longestSession = duration;
+        }
+
+        // Daily goal tracking and streak
+        const today = new Date().toDateString();
+        if (analyticsData.lastSessionDate !== today) {
+          // New day or first session of the day
+          const yesterday = new Date();
+          yesterday.setDate(yesterday.getDate() - 1);
+          if (analyticsData.lastSessionDate === yesterday.toDateString()) {
+            analyticsData.currentStreak++;
+          } else {
+            analyticsData.currentStreak = 1; // Reset streak if gap
+          }
+          analyticsData.dailyFocusedTime = duration; // Start new daily total
+        } else {
+          analyticsData.dailyFocusedTime += duration;
+        }
+
+        if (analyticsData.currentStreak > analyticsData.longestStreak) {
+          analyticsData.longestStreak = analyticsData.currentStreak;
+        }
+
+        analyticsData.lastSessionDate = today;
+
+        saveAnalytics();
+      }
+
+      function calculateAverageFocus() {
+        if (analyticsData.totalSessions === 0) return 0;
+        return Math.floor(
+          analyticsData.totalFocusTime / analyticsData.totalSessions
+        );
+      }
+
+      function updateAnalyticsDisplay() {
+        longestFocusSpan.textContent = formatTime(analyticsData.longestSession);
+        averageFocusSpan.textContent = formatTime(calculateAverageFocus());
+        totalSessionsSpan.textContent = analyticsData.totalSessions;
+        currentStreakSpan.textContent = analyticsData.currentStreak;
+        longestStreakSpan.textContent = analyticsData.longestStreak;
+
+        const dailyProgress = Math.min(
+          100,
+          (analyticsData.dailyFocusedTime / analyticsData.dailyGoal) * 100
+        );
+        dailyProgressBar.style.width = `${dailyProgress}%`;
+        dailyProgressBar.textContent = `${Math.floor(dailyProgress)}%`;
+        dailyProgressBar.style.backgroundColor =
+          dailyProgress >= 100 ? "#28a745" : "#4CAF50";
+      }
+
+      // Local Storage Functions
+      function saveAnalytics() {
+        localStorage.setItem(LS_KEY_ANALYTICS, JSON.stringify(analyticsData));
+      }
+
+      function loadAnalytics() {
+        const storedData = localStorage.getItem(LS_KEY_ANALYTICS);
+        if (storedData) {
+          analyticsData = JSON.parse(storedData);
+          // Ensure all new properties exist for backward compatibility
+          analyticsData.dailyFocusedTime = analyticsData.dailyFocusedTime || 0;
+          analyticsData.dailyGoal = analyticsData.dailyGoal || 60 * 60;
+          analyticsData.currentStreak = analyticsData.currentStreak || 0;
+          analyticsData.longestStreak = analyticsData.longestStreak || 0;
+        }
+        updateAnalyticsDisplay();
+      }
+
+      function saveLastSession() {
+        const lastSessionData = {
+          elapsedTime: elapsedTime,
+          isRunning: isRunning,
+          startTime: startTime,
+        };
+        localStorage.setItem(
+          LS_KEY_LAST_SESSION,
+          JSON.stringify(lastSessionData)
+        );
+      }
+
+      function loadLastSession() {
+        const storedSession = localStorage.getItem(LS_KEY_LAST_SESSION);
+        if (storedSession) {
+          const lastSessionData = JSON.parse(storedSession);
+          elapsedTime = lastSessionData.elapsedTime || 0;
+          isRunning = lastSessionData.isRunning || false;
+          startTime = lastSessionData.startTime || Date.now(); // Fallback to current time if startTime is missing
+
+          updateDisplay();
+          if (isRunning) {
+            startTimer(); // Resume timer if it was running
+          }
+        }
+      }
+
+      function clearLastSession() {
+        localStorage.removeItem(LS_KEY_LAST_SESSION);
+      }
+
+      // Internationalization (i18n) functions
+      function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+          }
+        });
+        localStorage.setItem(LS_KEY_CURRENT_LANG, lang); // Save selected language
+      }
+
+      function initializeLanguage() {
+        const storedLang = localStorage.getItem(LS_KEY_CURRENT_LANG);
+        let userLang = navigator.language.split("-")[0]; // e.g., 'en', 'ko'
+
+        if (storedLang && translations[storedLang]) {
+          userLang = storedLang;
+        } else if (!translations[userLang]) {
+          userLang = "en"; // Default to English if user's browser language isn't supported
+        }
+
+        languageSelect.value = userLang;
+        setLanguage(userLang);
+      }
+
+      // Event Listeners
+      startButton.addEventListener("click", startTimer);
+      stopButton.addEventListener("click", stopTimer);
+      languageSelect.addEventListener("change", (event) => {
+        setLanguage(event.target.value);
+      });
+
+      // Initial setup on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeLanguage();
+        loadAnalytics();
+        loadLastSession();
+      });
+    </script>
+  </body>
+</html>
